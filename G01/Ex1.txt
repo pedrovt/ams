@@ -1,0 +1,11 @@
+Analysis And Modelling Of Systems | Pedro Teixeira 2018
+
+The activity is started by an order department, who receives an order. 
+
+If the order is accepted, the order will be filled, otherwise it will be closed.
+
+After the order has been filled, it is shipped while, simultaneously, an invoice is sent by the Acctg department to the Customer. 
+
+The Customer makes the payment, which is then accepted by the Acctg Department.
+
+Once both processes are finalized the order is closed.
