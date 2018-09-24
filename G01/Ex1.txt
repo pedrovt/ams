@@ -8,4 +8,4 @@ After the order has been filled, it is shipped while, simultaneously, an invoice
 
 The Customer makes the payment, which is then accepted by the Acctg Department.
 
-Once both processes are finalized the order is closed.
+Once both processes are finalized the order is closed. 
