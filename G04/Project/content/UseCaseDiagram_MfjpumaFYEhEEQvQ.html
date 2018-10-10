@@ -1,0 +1,598 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Use Case Diagram - Cafeteria Ordering System</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		G5	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Use Case Diagram - Cafeteria Ordering System		</span>
+<a onclick="javascript: showVpLink('G5.vpp://diagram/MfjpumaFYEhEEQvQ', 'Cafeteria Ordering System\nG5.vpp://diagram/MfjpumaFYEhEEQvQ', 'Cafeteria Ordering System', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|302.0|204.0|30.0|60.0|Actor_MrTpumaFYEhEEQva.html|Actor_MrTpumaFYEhEEQva.html|MrTpumaFYEhEEQvZ" id="optionMrTpumaFYEhEEQvZ">Patron : Actor</option>
+<option value="shape|59.0|3.0|30.0|60.0|Actor_RCzpumaFYEhEEQvg.html|Actor_RCzpumaFYEhEEQvg.html|RCzpumaFYEhEEQvf" id="optionRCzpumaFYEhEEQvf">Meal Deliverer : Actor</option>
+<option value="shape|595.0|214.0|30.0|60.0|Actor_OezpumaFYEhEEQvo.html|Actor_OezpumaFYEhEEQvo.html|OezpumaFYEhEEQvn" id="optionOezpumaFYEhEEQvn">Menu Manager : Actor</option>
+<option value="shape|587.0|98.0|30.0|60.0|Actor_LDzpumaFYEhEEQvw.html|Actor_LDzpumaFYEhEEQvw.html|zDzpumaFYEhEEQvv" id="optionzDzpumaFYEhEEQvv">Cafeteria Staff : Actor</option>
+<option value="shape|2.0|224.0|91.0|40.0|UseCase_VB3pumaFYEhEEQwT.html|UseCase_VB3pumaFYEhEEQwT.html|VB3pumaFYEhEEQwS" id="optionVB3pumaFYEhEEQwS">#1: Order Meal : Use Case</option>
+<option value="shape|515.0|428.0|110.0|40.0|UseCase_fsgZumaFYEhEEQw2.html|UseCase_fsgZumaFYEhEEQw2.html|fsgZumaFYEhEEQw1" id="optionfsgZumaFYEhEEQw1">#8: Create a Menu : Use Case</option>
+<option value="shape|34.0|270.0|133.0|40.0|UseCase_DsUZumaFYEhEEQxP.html|UseCase_DsUZumaFYEhEEQxP.html|DsUZumaFYEhEEQxO" id="optionDsUZumaFYEhEEQxO">#2 Change Meal Order : Use Case</option>
+<option value="shape|93.0|327.0|128.0|40.0|UseCase_kjyZumaFYEhEEQxs.html|UseCase_kjyZumaFYEhEEQxs.html|kjyZumaFYEhEEQxr" id="optionkjyZumaFYEhEEQxr">#3 Cancel Meal Order : Use Case</option>
+<option value="shape|198.0|363.0|87.0|40.0|UseCase_q6hZumaFYEhEEQyk.html|UseCase_q6hZumaFYEhEEQyk.html|q6hZumaFYEhEEQyj" id="optionq6hZumaFYEhEEQyj">#4 View Menu : Use Case</option>
+<option value="shape|208.0|403.0|183.0|40.0|UseCase_tBVZumaFYEhEEQzN.html|UseCase_tBVZumaFYEhEEQzN.html|NBVZumaFYEhEEQzM" id="optionNBVZumaFYEhEEQzM">#5 Register for Payroll Deduction : Use Case</option>
+<option value="shape|332.0|363.0|197.0|40.0|UseCase_ljHZumaFYEhEEQzq.html|UseCase_ljHZumaFYEhEEQzq.html|ljHZumaFYEhEEQzp" id="optionljHZumaFYEhEEQzp">#6 Unregister for Payroll Deduction : Use Case</option>
+<option value="shape|371.0|314.0|169.0|40.0|UseCase_unfZumaFYEhEEQ0J.html|UseCase_unfZumaFYEhEEQ0J.html|unfZumaFYEhEEQ0I" id="optionunfZumaFYEhEEQ0I">#7 Manage Meal Subscription : Use Case</option>
+<option value="shape|640.0|420.0|106.0|40.0|UseCase_gWm5umaFYEhEEQ1_.html|UseCase_gWm5umaFYEhEEQ1_.html|gWm5umaFYEhEEQ19" id="optiongWm5umaFYEhEEQ19">#9 Modify a Menu : Use Case</option>
+<option value="shape|766.0|403.0|112.0|40.0|UseCase_vze5umaFYEhEEQ2d.html|UseCase_vze5umaFYEhEEQ2d.html|vze5umaFYEhEEQ2c" id="optionvze5umaFYEhEEQ2c">#10 Delete a Menu : Use Case</option>
+<option value="shape|810.0|363.0|113.0|40.0|UseCase_hWZ5umaFYEhEEQ26.html|UseCase_hWZ5umaFYEhEEQ26.html|hWZ5umaFYEhEEQ25" id="optionhWZ5umaFYEhEEQ25">#11 Archive Menus : Use Case</option>
+<option value="shape|792.0|314.0|151.0|40.0|UseCase_5_V5umaFYEhEEQ3X.html|UseCase_5_V5umaFYEhEEQ3X.html|5.V5umaFYEhEEQ3W" id="option5.V5umaFYEhEEQ3W">#12 Define a Meal Special : Use Case</option>
+<option value="shape|704.0|164.0|116.0|40.0|UseCase_SuP5umaFYEhEEQ4W.html|UseCase_SuP5umaFYEhEEQ4W.html|SuP5umaFYEhEEQ4V" id="optionSuP5umaFYEhEEQ4V">#13 Prepare a Meal : Use Case</option>
+<option value="shape|704.0|98.0|193.0|40.0|UseCase_HlAFumaFYEhEEQ4z.html|UseCase_HlAFumaFYEhEEQ4z.html|HlAFumaFYEhEEQ4y" id="optionHlAFumaFYEhEEQ4y">#14 Generate a Payment Request : Use Case</option>
+<option value="shape|680.0|2.0|165.0|40.0|UseCase_c5oFumaFYEhEEQ5Q.html|UseCase_c5oFumaFYEhEEQ5Q.html|c5oFumaFYEhEEQ5P" id="optionc5oFumaFYEhEEQ5P">#15 Request a Meal Delivery : Use Case</option>
+<option value="shape|452.0|12.0|165.0|40.0|UseCase_ZhUFumaFYEhEEQ5t.html|UseCase_ZhUFumaFYEhEEQ5t.html|ZhUFumaFYEhEEQ5s" id="optionZhUFumaFYEhEEQ5s">#16 Generate System Usage Reports : Use Case</option>
+<option value="shape|247.0|52.0|149.0|40.0|UseCase_GNmFumaFYEhEEQ6K.html|UseCase_GNmFumaFYEhEEQ6K.html|GNmFumaFYEhEEQ6J" id="optionGNmFumaFYEhEEQ6J">#17 Record Meal Delivery : Use Case</option>
+<option value="shape|184.0|108.0|170.0|40.0|UseCase_CbuFumaFYEhEEQ6p.html|UseCase_CbuFumaFYEhEEQ6p.html|CbuFumaFYEhEEQ6o" id="optionCbuFumaFYEhEEQ6o">#18 Print Delivery Instructions : Use Case</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Cafeteria_Ordering_System.png" usemap="#diagram_map" class="Image" width="947" height="472"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="50.0, 217.0, 50.0, 224.0, 93.0, 224.0, 93.0, 231.0, 302.0, 231.0, 302.0, 217.0" coords2="50.0, 217.0, 50.0, 224.0, 93.0, 224.0, 93.0, 231.0, 302.0, 231.0, 302.0, 217.0" shape="poly" alt=":Association" id="areadiagram_map_zJ3pumaFYEhEEQwl_default" href="Association_dJ3pumaFYEhEEQwg.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="618.0, 281.0, 618.0, 428.0, 625.0, 428.0, 625.0, 437.0, 632.0, 437.0, 632.0, 281.0" coords2="618.0, 281.0, 618.0, 428.0, 625.0, 428.0, 625.0, 437.0, 632.0, 437.0, 632.0, 281.0" shape="poly" alt=":Association" id="areadiagram_map_WigZumaFYEhEEQxI_default" href="Association_CigZumaFYEhEEQxD.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="344.0, 269.0, 335.0, 280.0, 366.9751, 305.58008, 366.9751, 305.58008, 167.0, 302.7832, 167.0, 302.7832, 167.0, 310.0, 111.0, 310.0, 111.0, 316.0, 384.78647, 319.8292, 384.78647, 319.8292, 390.0, 324.0, 393.3149, 319.94846, 393.3149, 319.94846, 397.0, 320.0, 397.0, 315.44446, 399.0, 313.0, 397.0, 311.4, 397.0, 306.0, 390.12988, 305.9039, 390.12988, 305.9039, 344.0, 269.0" coords2="344.0, 269.0, 335.0, 280.0, 366.9751, 305.58008, 366.9751, 305.58008, 167.0, 302.7832, 167.0, 302.7832, 167.0, 310.0, 111.0, 310.0, 111.0, 316.0, 384.78647, 319.8292, 384.78647, 319.8292, 390.0, 324.0, 393.3149, 319.94846, 393.3149, 319.94846, 397.0, 320.0, 397.0, 315.44446, 399.0, 313.0, 397.0, 311.4, 397.0, 306.0, 390.12988, 305.9039, 390.12988, 305.9039, 344.0, 269.0" shape="poly" alt=":Association" id="areadiagram_map_dCUZumaFYEhEEQxh_default" href="Association_JCUZumaFYEhEEQxc.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="290.0, 270.0, 207.17188, 327.0, 221.0, 327.0, 221.0, 333.98926, 298.0, 281.0, 290.0, 270.0" coords2="290.0, 270.0, 207.17188, 327.0, 221.0, 327.0, 221.0, 333.98926, 298.0, 281.0, 290.0, 270.0" shape="poly" alt=":Association" id="areadiagram_map_zzyZumaFYEhEEQx._default" href="Association_zzyZumaFYEhEEQx5.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="280.0, 271.0, 278.4538, 363.0, 285.0, 363.0, 285.0, 390.0, 292.0, 390.0, 294.0, 271.0" coords2="280.0, 271.0, 278.4538, 363.0, 285.0, 363.0, 285.0, 390.0, 292.0, 390.0, 294.0, 271.0" shape="poly" alt=":Association" id="areadiagram_map_9WhZumaFYEhEEQy2_default" href="Association_1WhZumaFYEhEEQyx.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="288.0, 271.0, 288.0, 403.0, 302.0, 403.0, 302.0, 271.0" coords2="288.0, 271.0, 288.0, 403.0, 302.0, 403.0, 302.0, 271.0" shape="poly" alt=":Association" id="areadiagram_map_xxVZumaFYEhEEQzf_default" href="Association_uxVZumaFYEhEEQza.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="324.0, 271.0, 324.0, 373.0, 332.0, 373.0, 332.0, 363.0, 338.0, 363.0, 338.0, 271.0" coords2="324.0, 271.0, 324.0, 373.0, 332.0, 373.0, 332.0, 363.0, 338.0, 363.0, 338.0, 271.0" shape="poly" alt=":Association" id="areadiagram_map_.LHZumaFYEhEEQz8_default" href="Association_mLHZumaFYEhEEQz3.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="347.0, 269.0, 336.0, 277.0, 371.0, 326.16666, 371.0, 314.0, 379.0339, 314.0, 347.0, 269.0" coords2="347.0, 269.0, 336.0, 277.0, 371.0, 326.16666, 371.0, 314.0, 379.0339, 314.0, 347.0, 269.0" shape="poly" alt=":Association" id="areadiagram_map_iPfZumaFYEhEEQ0b_default" href="Association_4PfZumaFYEhEEQ0W.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="633.0, 281.0, 633.0, 429.0, 640.0, 429.0, 640.0, 420.0, 647.0, 420.0, 647.0, 281.0" coords2="633.0, 281.0, 633.0, 429.0, 640.0, 429.0, 640.0, 420.0, 647.0, 420.0, 647.0, 281.0" shape="poly" alt=":Association" id="areadiagram_map_1Om5umaFYEhEEQ2Q_default" href="Association_1Om5umaFYEhEEQ2L.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="661.0, 279.0, 651.0, 289.0, 766.0, 413.2742, 766.0, 403.0, 775.7463, 403.0, 661.0, 279.0" coords2="661.0, 279.0, 651.0, 289.0, 766.0, 413.2742, 766.0, 403.0, 775.7463, 403.0, 661.0, 279.0" shape="poly" alt=":Association" id="areadiagram_map_ube5umaFYEhEEQ2v_default" href="Association_ube5umaFYEhEEQ2q.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="656.0, 280.0, 651.0, 293.0, 810.0, 369.39105, 810.0, 363.0, 828.7558, 363.0, 656.0, 280.0" coords2="656.0, 280.0, 651.0, 293.0, 810.0, 369.39105, 810.0, 363.0, 828.7558, 363.0, 656.0, 280.0" shape="poly" alt=":Association" id="areadiagram_map_ouZ5umaFYEhEEQ3M_default" href="Association_7OZ5umaFYEhEEQ3H.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="655.0, 282.0, 653.0, 296.0, 792.0, 320.24417, 792.0, 314.0, 826.7143, 314.0, 827.0, 312.0, 655.0, 282.0" coords2="655.0, 282.0, 653.0, 296.0, 792.0, 320.24417, 792.0, 314.0, 826.7143, 314.0, 827.0, 312.0, 655.0, 282.0" shape="poly" alt=":Association" id="areadiagram_map_iRV5umaFYEhEEQ3p_default" href="Association_iRV5umaFYEhEEQ3k.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="643.0, 160.0, 643.0, 174.0, 704.0, 174.0, 704.0, 164.0, 740.0, 164.0, 740.0, 160.0" coords2="643.0, 160.0, 643.0, 174.0, 704.0, 174.0, 704.0, 164.0, 740.0, 164.0, 740.0, 160.0" shape="poly" alt=":Association" id="areadiagram_map_mBP5umaFYEhEEQ4o_default" href="Association_KBP5umaFYEhEEQ4j.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="617.0, 107.0, 617.0, 121.0, 704.0, 121.0, 704.0, 107.0" coords2="617.0, 107.0, 617.0, 121.0, 704.0, 121.0, 704.0, 107.0" shape="poly" alt=":Association" id="areadiagram_map_NNAFumaFYEhEEQ5F_default" href="Association_NNAFumaFYEhEEQ5A.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="680.0, 22.173914, 617.0, 153.65218, 617.0, 158.0, 614.9167, 158.0, 613.0, 162.0, 626.0, 167.0, 685.8958, 42.0, 680.0, 42.0, 680.0, 22.173914" coords2="680.0, 22.173914, 617.0, 153.65218, 617.0, 158.0, 614.9167, 158.0, 613.0, 162.0, 626.0, 167.0, 685.8958, 42.0, 680.0, 42.0, 680.0, 22.173914" shape="poly" alt=":Association" id="areadiagram_map_DloFumaFYEhEEQ5i_default" href="Association_1loFumaFYEhEEQ5d.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="544.0, 52.0, 544.0, 108.0, 558.0, 108.0, 558.0, 52.0" coords2="544.0, 52.0, 544.0, 108.0, 558.0, 108.0, 558.0, 52.0" shape="poly" alt=":Association" id="areadiagram_map_YJUFumaFYEhEEQ5__default" href="Association_PxUFumaFYEhEEQ56.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="116.0, 73.0, 116.0, 87.0, 247.0, 87.0, 247.0, 73.0" coords2="116.0, 73.0, 116.0, 87.0, 247.0, 87.0, 247.0, 73.0" shape="poly" alt=":Association" id="areadiagram_map_HdmFumaFYEhEEQ6c_default" href="Association_HdmFumaFYEhEEQ6X.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="119.0, 69.0, 114.0, 82.0, 184.0, 114.76596, 184.0, 108.0, 202.31818, 108.0, 119.0, 69.0" coords2="119.0, 69.0, 114.0, 82.0, 184.0, 114.76596, 184.0, 108.0, 202.31818, 108.0, 119.0, 69.0" shape="poly" alt=":Association" id="areadiagram_map_9HuFumaFYEhEEQ67_default" href="Association_VHuFumaFYEhEEQ62.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="184, 108, 354, 148" coords2="184, 108, 354, 148" shape="rect" alt="#18 Print Delivery Instructions:Use Case" id="areadiagram_map_CbuFumaFYEhEEQ6o_default" href="UseCase_CbuFumaFYEhEEQ6p.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="247, 52, 396, 92" coords2="247, 52, 396, 92" shape="rect" alt="#17 Record Meal Delivery:Use Case" id="areadiagram_map_GNmFumaFYEhEEQ6J_default" href="UseCase_GNmFumaFYEhEEQ6K.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="452, 12, 617, 52" coords2="452, 12, 617, 52" shape="rect" alt="#16 Generate System Usage Reports:Use Case" id="areadiagram_map_ZhUFumaFYEhEEQ5s_default" href="UseCase_ZhUFumaFYEhEEQ5t.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="680, 2, 845, 42" coords2="680, 2, 845, 42" shape="rect" alt="#15 Request a Meal Delivery:Use Case" id="areadiagram_map_c5oFumaFYEhEEQ5P_default" href="UseCase_c5oFumaFYEhEEQ5Q.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="704, 98, 897, 138" coords2="704, 98, 897, 138" shape="rect" alt="#14 Generate a Payment Request:Use Case" id="areadiagram_map_HlAFumaFYEhEEQ4y_default" href="UseCase_HlAFumaFYEhEEQ4z.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="704, 164, 820, 204" coords2="704, 164, 820, 204" shape="rect" alt="#13 Prepare a Meal:Use Case" id="areadiagram_map_SuP5umaFYEhEEQ4V_default" href="UseCase_SuP5umaFYEhEEQ4W.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="792, 314, 943, 354" coords2="792, 314, 943, 354" shape="rect" alt="#12 Define a Meal Special:Use Case" id="areadiagram_map_5.V5umaFYEhEEQ3W_default" href="UseCase_5_V5umaFYEhEEQ3X.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="810, 363, 923, 403" coords2="810, 363, 923, 403" shape="rect" alt="#11 Archive Menus:Use Case" id="areadiagram_map_hWZ5umaFYEhEEQ25_default" href="UseCase_hWZ5umaFYEhEEQ26.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="766, 403, 878, 443" coords2="766, 403, 878, 443" shape="rect" alt="#10 Delete a Menu:Use Case" id="areadiagram_map_vze5umaFYEhEEQ2c_default" href="UseCase_vze5umaFYEhEEQ2d.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="640, 420, 746, 460" coords2="640, 420, 746, 460" shape="rect" alt="#9 Modify a Menu:Use Case" id="areadiagram_map_gWm5umaFYEhEEQ19_default" href="UseCase_gWm5umaFYEhEEQ1_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="371, 314, 540, 354" coords2="371, 314, 540, 354" shape="rect" alt="#7 Manage Meal Subscription:Use Case" id="areadiagram_map_unfZumaFYEhEEQ0I_default" href="UseCase_unfZumaFYEhEEQ0J.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="332, 363, 529, 403" coords2="332, 363, 529, 403" shape="rect" alt="#6 Unregister for Payroll Deduction:Use Case" id="areadiagram_map_ljHZumaFYEhEEQzp_default" href="UseCase_ljHZumaFYEhEEQzq.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="208, 403, 391, 443" coords2="208, 403, 391, 443" shape="rect" alt="#5 Register for Payroll Deduction:Use Case" id="areadiagram_map_NBVZumaFYEhEEQzM_default" href="UseCase_tBVZumaFYEhEEQzN.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="198, 363, 285, 403" coords2="198, 363, 285, 403" shape="rect" alt="#4 View Menu:Use Case" id="areadiagram_map_q6hZumaFYEhEEQyj_default" href="UseCase_q6hZumaFYEhEEQyk.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="93, 327, 221, 367" coords2="93, 327, 221, 367" shape="rect" alt="#3 Cancel Meal Order:Use Case" id="areadiagram_map_kjyZumaFYEhEEQxr_default" href="UseCase_kjyZumaFYEhEEQxs.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="34, 270, 167, 310" coords2="34, 270, 167, 310" shape="rect" alt="#2 Change Meal Order:Use Case" id="areadiagram_map_DsUZumaFYEhEEQxO_default" href="UseCase_DsUZumaFYEhEEQxP.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="515, 428, 625, 468" coords2="515, 428, 625, 468" shape="rect" alt="#8: Create a Menu:Use Case" id="areadiagram_map_fsgZumaFYEhEEQw1_default" href="UseCase_fsgZumaFYEhEEQw2.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;margin-right:0;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-right:0pt;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;&amp;quot;&amp;gt;
+      &amp;lt;b charset=&amp;quot;utf-8&amp;quot; id=&amp;quot;docs-internal-guid-a1e0f7a7-7fff-8826-8c43-c52e6af046a5&amp;quot; style=&amp;quot;font-weight:normal;&amp;quot;&amp;gt;&amp;lt;span font-style=&amp;quot;normal&amp;quot; font-variant=&amp;quot;normal&amp;quot; style=&amp;quot;color:#000000;font-weight:400;vertical-align:baseline;font-size:11pt;font-family:Arial;&amp;quot; text-decoration=&amp;quot;none&amp;quot; white-space=&amp;quot;pre-wrap&amp;quot;&amp;gt;&amp;lt;font face=&amp;quot;Arial&amp;quot; size=&amp;quot;11pt&amp;quot; style=&amp;quot;color:#000000;font-size:11pt;&amp;quot;&amp;gt;A 
+      Patron accesses the Cafeteria Ordering System from either the corporate 
+      intranet or external Internet, views the menu for a specifc date, 
+      selects food items, and places an order for a meal to be picked up in 
+      the cafeteria or delivered to a specifed location within a specifed 
+      15-minute time window.&amp;lt;/font&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/b&amp;gt;
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="2, 224, 93, 264" coords2="2, 224, 93, 264" shape="rect" alt="#1: Order Meal:Use Case" id="areadiagram_map_VB3pumaFYEhEEQwS_default" href="UseCase_VB3pumaFYEhEEQwT.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','2, 224, 93, 264',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('Actor_MrTpumaFYEhEEQva.html/Patron/Actor'),new Array(),new Array()),showReferenceIcon('diagram', '2, 224, 93, 264'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="587, 98, 617, 158" coords2="587, 98, 617, 158" shape="rect" alt="Cafeteria Staff:Actor" id="areadiagram_map_zDzpumaFYEhEEQvv_default" href="Actor_LDzpumaFYEhEEQvw.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="595, 214, 625, 274" coords2="595, 214, 625, 274" shape="rect" alt="Menu Manager:Actor" id="areadiagram_map_OezpumaFYEhEEQvn_default" href="Actor_OezpumaFYEhEEQvo.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="59, 3, 89, 63" coords2="59, 3, 89, 63" shape="rect" alt="Meal Deliverer:Actor" id="areadiagram_map_RCzpumaFYEhEEQvf_default" href="Actor_RCzpumaFYEhEEQvg.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="302, 204, 332, 264" coords2="302, 204, 332, 264" shape="rect" alt="Patron:Actor" id="areadiagram_map_MrTpumaFYEhEEQvZ_default" href="Actor_MrTpumaFYEhEEQva.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_MrTpumaFYEhEEQva.html" class="ItemLink">Patron : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_RCzpumaFYEhEEQvg.html" class="ItemLink">Meal Deliverer : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_OezpumaFYEhEEQvo.html" class="ItemLink">Menu Manager : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Actor_LDzpumaFYEhEEQvw.html" class="ItemLink">Cafeteria Staff : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_VB3pumaFYEhEEQwT.html" class="ItemLink">#1: Order Meal : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="margin-right:0;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;">
+    <p style="margin-right:0pt;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;">
+      <b charset="utf-8" id="docs-internal-guid-a1e0f7a7-7fff-8826-8c43-c52e6af046a5" style="font-weight:normal;"><span font-style="normal" font-variant="normal" style="color:#000000;font-weight:400;vertical-align:baseline;font-size:11pt;font-family:Arial;" text-decoration="none" white-space="pre-wrap"><font face="Arial" size="11pt" style="color:#000000;font-size:11pt;">A 
+      Patron accesses the Cafeteria Ordering System from either the corporate 
+      intranet or external Internet, views the menu for a specifc date, 
+      selects food items, and places an order for a meal to be picked up in 
+      the cafeteria or delivered to a specifed location within a specifed 
+      15-minute time window.</font></span></b>
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_fsgZumaFYEhEEQw2.html" class="ItemLink">#8: Create a Menu : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_DsUZumaFYEhEEQxP.html" class="ItemLink">#2 Change Meal Order : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_kjyZumaFYEhEEQxs.html" class="ItemLink">#3 Cancel Meal Order : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_q6hZumaFYEhEEQyk.html" class="ItemLink">#4 View Menu : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_tBVZumaFYEhEEQzN.html" class="ItemLink">#5 Register for Payroll Deduction : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_ljHZumaFYEhEEQzq.html" class="ItemLink">#6 Unregister for Payroll Deduction : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_unfZumaFYEhEEQ0J.html" class="ItemLink">#7 Manage Meal Subscription : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_gWm5umaFYEhEEQ1_.html" class="ItemLink">#9 Modify a Menu : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_vze5umaFYEhEEQ2d.html" class="ItemLink">#10 Delete a Menu : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_hWZ5umaFYEhEEQ26.html" class="ItemLink">#11 Archive Menus : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_5_V5umaFYEhEEQ3X.html" class="ItemLink">#12 Define a Meal Special : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_SuP5umaFYEhEEQ4W.html" class="ItemLink">#13 Prepare a Meal : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_HlAFumaFYEhEEQ4z.html" class="ItemLink">#14 Generate a Payment Request : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_c5oFumaFYEhEEQ5Q.html" class="ItemLink">#15 Request a Meal Delivery : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_ZhUFumaFYEhEEQ5t.html" class="ItemLink">#16 Generate System Usage Reports : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_GNmFumaFYEhEEQ6K.html" class="ItemLink">#17 Record Meal Delivery : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="UseCase_CbuFumaFYEhEEQ6p.html" class="ItemLink">#18 Print Delivery Instructions : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		G5	</div>
+</body>
+</html>
